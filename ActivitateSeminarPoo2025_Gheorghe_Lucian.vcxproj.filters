@@ -18,5 +18,8 @@
     <ClCompile Include="TestLinkRepo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clubFotbal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
