@@ -31,6 +31,18 @@ public:
 
     }
 
+    //met de set
+    void setNume(string n) { nume = n; }
+    void setOras(string o) { oras = o; }
+    void setAnInfiintare(int an) { anInfiintare = an; }
+    void setNumarTrofee(int t) { numarTrofee = t; }
+
+            // met de get
+    string getNume() { return nume; }
+    string getOras() { return oras; }
+    int getAnInfiintare() { return anInfiintare; }
+    int getNumarTrofee() { return numarTrofee; }
+
 };
 
 int main() {
