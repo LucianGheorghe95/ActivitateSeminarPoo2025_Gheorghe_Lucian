@@ -43,6 +43,19 @@ public:
     int getAnInfiintare() { return anInfiintare; }
     int getNumarTrofee() { return numarTrofee; }
 
+ //metoda care afiseaza informatiile clubului
+    void afiseazaInfo() {
+        cout << "Club: " << nume << endl;
+        cout << "Oras: " << oras << endl;
+        cout << "An infiintare: " << anInfiintare << endl;
+        cout << "Numar trofee: " << numarTrofee << endl;
+    }
+
+    //metoda care calculeaza vechime club
+    int calculeazaVechime(int anCurent) {
+        return anCurent - anInfiintare;
+    }
+
 };
 
 int main() {
@@ -50,6 +63,15 @@ int main() {
 
     
     ClubFotbal club2("FCSB", "Bucuresti", 1947, 26);
+
+    cout << "informatii club 1:" << endl;
+    club1.afiseazaInfo();
+
+    cout << "\informatii club 2:" << endl;
+   
+    club2.afiseazaInfo();
+
+    cout << "\vechimea clubului " << club2.getNume() << " este de " << club2.calculeazaVechime(2025) << " ani." << endl;
 
     return 0;
 }
