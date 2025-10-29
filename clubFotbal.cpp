@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 class ClubFotbal {
@@ -8,6 +9,7 @@ private:
     string oras;
     int anInfiintare;
     int numarTrofee;
+    vector<string> jucatori;
 
 public:
     //constructor
@@ -16,6 +18,7 @@ public:
         oras = "no name";
         anInfiintare = 0;
         numarTrofee = 0;
+        jucatori = {};
     }
 
   //constr cu param
@@ -24,6 +27,7 @@ public:
         oras = o;
         anInfiintare = an;
         numarTrofee = trofee;
+        jucatori = {};
     }
 
    //destructor
@@ -43,13 +47,29 @@ public:
     int getAnInfiintare() { return anInfiintare; }
     int getNumarTrofee() { return numarTrofee; }
 
+    
+   // functie adaugare jucator
+    void adaugaJucator(string jucator) {
+        jucatori.push_back(jucator);
+    }
+       
+        // afiseaza jucator
+    void afiseazaJucatori() {
+        cout << "Jucatori in lot:" << endl;
+        for (string j : jucatori) {
+            cout << " - " << j << endl;
+        }
+    }
+
  //metoda care afiseaza informatiile clubului
     void afiseazaInfo() {
         cout << "Club: " << nume << endl;
         cout << "Oras: " << oras << endl;
         cout << "An infiintare: " << anInfiintare << endl;
         cout << "Numar trofee: " << numarTrofee << endl;
+        afiseazaJucatori();
     }
+
 
     //metoda care calculeaza vechime club
     int calculeazaVechime(int anCurent) {
@@ -63,6 +83,11 @@ int main() {
 
     
     ClubFotbal club2("FCSB", "Bucuresti", 1947, 26);
+
+    club2.adaugaJucator("Tarnovanu Stefan");
+    club2.adaugaJucator("Darius Olaru");
+    club2.adaugaJucator("Yuri Cissoti");
+
 
     cout << "informatii club 1:" << endl;
     club1.afiseazaInfo();
