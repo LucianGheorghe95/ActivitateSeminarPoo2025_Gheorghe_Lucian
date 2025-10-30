@@ -78,6 +78,21 @@ public:
 
 };
 
+// clasa jucator
+class Jucator {
+private:
+    string nume;
+    int varsta;
+    string pozitie;
+    int numarTricou;
+    double salariu;
+
+public:
+    Jucator(): nume("Necunoscut"), varsta(0), pozitie("N/A"), numarTricou(0), salariu(0.0) {}
+
+    Jucator(string n, int v, string p, int nr, double s) : nume(n), varsta(v), pozitie(p), numarTricou(nr), salariu(s) {}
+};
+
 int main() {
     ClubFotbal club1;
 
