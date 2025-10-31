@@ -91,6 +91,20 @@ public:
     Jucator(): nume("Necunoscut"), varsta(0), pozitie("N/A"), numarTricou(0), salariu(0.0) {}
 
     Jucator(string n, int v, string p, int nr, double s) : nume(n), varsta(v), pozitie(p), numarTricou(nr), salariu(s) {}
+
+    //metode set
+    void setNume(string n) { nume = n;}
+    void setVarsta(int v) { varsta = v;}
+    void setPozitie(string p) { pozitie = p;}
+    void setNumarTricou(int nr) { numarTricou = nr;}
+    void setSalariu(double s) { salariu = s;}
+
+    // metode get
+    string getNume() const { return nume;}
+    int getVarsta() const { return varsta;}
+    string getPozitie() const { return pozitie;}
+    int getNumarTricou() const { return numarTricou;}
+    double getSalariu() const { return salariu;}
 };
 
 int main() {
