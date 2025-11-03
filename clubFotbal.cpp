@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,7 +35,7 @@ public:
     ~ClubFotbal() {
 
     }
-
+    
     //met de set
     void setNume(string n) { nume = n; }
     void setOras(string o) { oras = o; }
@@ -72,9 +73,9 @@ public:
 
 
     //metoda care calculeaza vechime club
-    int calculeazaVechime(int anCurent) {
-        return anCurent - anInfiintare;
-    }
+  //  int calculeazaVechime(int anCurent) {
+     //   return anCurent - anInfiintare;
+    //}
 
 };
 
@@ -105,8 +106,12 @@ public:
     string getPozitie() const { return pozitie;}
     int getNumarTricou() const { return numarTricou;}
     double getSalariu() const { return salariu;}
-};
 
+   // void adaugaJucator( const Jucator& j) {          //
+     //   jucatori.push_back(j);                      
+    //}
+};
+/*
 int main() {
     ClubFotbal club1;
 
@@ -129,3 +134,4 @@ int main() {
 
     return 0;
 }
+*/

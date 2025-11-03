@@ -21,5 +21,8 @@
     <ClCompile Include="clubFotbal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Hotel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
