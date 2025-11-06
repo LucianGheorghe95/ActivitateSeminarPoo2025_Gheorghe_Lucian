@@ -43,11 +43,23 @@ public:
         return numarCamere - camereOcupate;
     }
 
+    // afisare detalii hotel
+    void afiseazaInfo() {
+        cout << "hotel: " << numeHotel << endl;
+        cout << "oras: " << oras << endl;
+        cout << "Camere totale: " << numarCamere << endl;
+        cout << "Camere ocupate: " << camereOcupate << endl;
+        cout << "Camere libere: " << camereLibere() << endl;
+    }
+
 };
 
 int main() {
 
     Hotel h1("Caro", "Bucuresti", 200, 150);
+
+    cout << "Info hotel:" << endl;
+    h1.afiseazaInfo();
 
     return 0;
 }
