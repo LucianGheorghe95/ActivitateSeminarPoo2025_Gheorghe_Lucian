@@ -8,6 +8,7 @@ private:
     string oras;
     int numarCamere;
     int camereOcupate;
+    static int totalHoteluri;
 
 public:
    //cpmstr fara parametrii
@@ -16,6 +17,7 @@ public:
         oras = "Necunoscut";
         numarCamere = 0;
         camereOcupate = 0;
+        totalHoteluri++;
     }
 
     // constr cu parametrii
@@ -24,6 +26,11 @@ public:
         oras = o;
         numarCamere = totalCamere;
         camereOcupate = ocupate;
+        totalHoteluri++;
+    }
+
+    ~Hotel() {
+        totalHoteluri--;
     }
 
     // met de set
@@ -41,6 +48,16 @@ public:
     // met de verificat nr camere disponibile
     int camereLibere() {
         return numarCamere - camereOcupate;
+    }
+
+    void ocupaCamere(int nr) {
+        if (camereOcupate + nr > numarCamere) {
+            cout << "Eroare: nu sunt suficiente camere libere!\n";
+        }
+        else {
+            camereOcupate += nr;
+            cout << nr << " camere au fost ocupate.\n";
+        }
     }
 
     // afisare detalii hotel
