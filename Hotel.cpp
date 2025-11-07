@@ -60,6 +60,25 @@ public:
         }
     }
 
+    void elibereazaCamere(int nr) {
+        if (nr > camereOcupate) {
+            cout << "Eroare: nu poti elibera mai multe camere decat sunt ocupate!\n";
+        }
+        else {
+            camereOcupate -= nr;
+            cout << nr << " camere au fost eliberate.\n";
+        }
+    }
+
+    double gradOcupare() {
+        if (numarCamere == 0) return 0;
+        return (double)camereOcupate / numarCamere * 100;
+    }
+
+    static int getTotalHoteluri() {
+        return totalHoteluri;
+    }
+
     // afisare detalii hotel
     void afiseazaInfo() {
         cout << "hotel: " << numeHotel << endl;
@@ -71,12 +90,26 @@ public:
 
 };
 
+// ititializam variabila statica
+int Hotel::totalHoteluri = 0;
+
 int main() {
 
     Hotel h1("Caro", "Bucuresti", 200, 150);
+    Hotel h2("Continental", "Cluj", 120, 90);
 
     cout << "Info hotel:" << endl;
     h1.afiseazaInfo();
+    h2.afiseazaInfo();
+
+    cout << "\nTotal hoteluri create: " << Hotel::getTotalHoteluri() << endl;
+
+    cout << "Operatii: " << endl;
+    h1.ocupaCamere(20);   
+    h1.elibereazaCamere(10);
+    h1.afiseazaInfo();
+
+    cout << "Total hoteluri in sistem: " << Hotel::getTotalHoteluri() << endl;
 
     return 0;
 }
