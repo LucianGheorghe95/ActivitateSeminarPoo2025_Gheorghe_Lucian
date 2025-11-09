@@ -2,6 +2,35 @@
 #include <string>
 using namespace std;
 
+class Client {
+private:
+    string nume;
+    int varsta;
+    int numarCamera;
+    int zileSejur;
+public:
+    Client() : nume("N/A"), varsta(0), numarCamera(-1), zileSejur(0) {}
+    Client(string n, int v, int camera, int zile) : nume(n), varsta(v), numarCamera(camera), zileSejur(zile) {}
+
+    void setNume(string n) { nume = n; }
+    void setVarsta(int v) { varsta = v; }
+    void setNumarCamera(int c) { numarCamera = c; }
+    void setZileSejur(int z) { zileSejur = z; }
+
+    string getNume() const { return nume; }
+    int getVarsta() const { return varsta; }
+    int getNumarCamera() const { return numarCamera; }
+    int getZileSejur() const { return zileSejur; } 
+
+    void afiseaza() const {
+        cout << "Client: " << nume
+            << ", varsta: " << varsta
+            << ", camera: " << numarCamera
+            << ", zile sejur: " << zileSejur << "\n";
+    }
+};
+
+
 class Hotel {
 private:
     string numeHotel;
@@ -89,6 +118,7 @@ public:
     }
 
 };
+
 
 // ititializam variabila statica
 int Hotel::totalHoteluri = 0;
