@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector> 
 using namespace std;
 
 class Client {
@@ -39,6 +40,16 @@ private:
     int camereOcupate;
     static int totalHoteluri;
 
+    vector<Client> clienti; 
+
+    bool esteCameraLibera(int nr) const { 
+        if (nr < 1 || nr > numarCamere) return false;
+        for (const auto& c : clienti) {
+            if (c.getNumarCamera() == nr) return false;
+        }
+        return true;
+    }
+
 public:
    //cpmstr fara parametrii
     Hotel() {
@@ -69,14 +80,14 @@ public:
     void setCamereOcupate(int nr) {camereOcupate = nr;}
 
     // met de get
-    string getNume(){return numeHotel;}
-    string getOras() { return oras; }
-    int getNumarCamere(){ return numarCamere;}
-    int getCamereOcupate() {return camereOcupate; }
+    string getNume() const {return numeHotel;}
+    string getOras() const { return oras; }
+    int getNumarCamere() const { return numarCamere;}
+    //int getCamereOcupate() {return camereOcupate; }
 
     // met de verificat nr camere disponibile
-    int camereLibere() {
-        return numarCamere - camereOcupate;
+    int camereLibere() const {
+        return numarCamere - (int)clienti.size();
     }
 
     void ocupaCamere(int nr) {
@@ -99,9 +110,9 @@ public:
         }
     }
 
-    double gradOcupare() {
+    double gradOcupare() const {
         if (numarCamere == 0) return 0;
-        return (double)camereOcupate / numarCamere * 100;
+        return (double)clienti.size() / numarCamere * 100.0;
     }
 
     static int getTotalHoteluri() {
@@ -109,12 +120,71 @@ public:
     }
 
     // afisare detalii hotel
-    void afiseazaInfo() {
-        cout << "hotel: " << numeHotel << endl;
-        cout << "oras: " << oras << endl;
-        cout << "Camere totale: " << numarCamere << endl;
-        cout << "Camere ocupate: " << camereOcupate << endl;
-        cout << "Camere libere: " << camereLibere() << endl;
+    void afiseazaInfo() const {
+        cout << "\nHotel: " << numeHotel << "\n"
+            << "Oras: " << oras << "\n"
+            << "Camere totale: " << numarCamere << "\n"
+            << "Rezervari active: " << clienti.size() << "\n"
+            << "Camere libere: " << camereLibere() << "\n"
+            << "Grad de ocupare: " << gradOcupare() << "%\n";
+    }
+
+    bool rezervaCamera(string numeClient, int varsta, int nrCamera, int zileSejur) {
+        if (nrCamera < 1 || nrCamera > numarCamere) {
+            cout << "Eroare: camera " << nrCamera << " nu exista.\n";
+            return false;
+        }
+        if (!esteCameraLibera(nrCamera)) {
+            cout << "Eroare: camera " << nrCamera << " este deja ocupata.\n";
+            return false;
+        }
+        clienti.emplace_back(numeClient, varsta, nrCamera, zileSejur);
+        cout << "Rezervare reusita pentru " << numeClient << " la camera " << nrCamera << ".\n";
+        return true;
+    }
+
+    bool anuleazaRezervareCamera(int nrCamera) {
+        for (size_t i = 0; i < clienti.size(); ++i) {
+            if (clienti[i].getNumarCamera() == nrCamera) {
+                cout << "Rezervarea pentru camera " << nrCamera
+                    << " (client: " << clienti[i].getNume() << ") a fost anulata.\n";
+                clienti.erase(clienti.begin() + i);
+                return true;
+            }
+        }
+        cout << "Nu exista rezervare pentru camera " << nrCamera << ".\n";
+        return false;
+    }
+
+    bool anuleazaRezervareClient(string numeClient) { 
+        for (size_t i = 0; i < clienti.size(); ++i) {
+            if (clienti[i].getNume() == numeClient) {
+                cout << "Rezervarea clientului " << numeClient << " a fost anulata camera "
+                    << clienti[i].getNumarCamera() << ").\n";
+                clienti.erase(clienti.begin() + i);
+                return true;
+            }
+        }
+        cout << "Nu am gasit rezervare pentru clientul " << numeClient << ".\n";
+        return false;
+    }
+
+    void afiseazaClienti() const { 
+        if (clienti.empty()) { cout << "Nu exista clienti cazati.\n"; return; }
+        cout << "\nLista clienti cazati:\n";
+        for (const auto& c : clienti) c.afiseaza();
+    }
+
+    bool afiseazaClientLaCamera(int nrCamera) const {  
+        for (const auto& c : clienti) {
+            if (c.getNumarCamera() == nrCamera) {
+                cout << "La camera " << nrCamera << " este cazat:\n";
+                c.afiseaza();
+                return true;
+            }
+        }
+        cout << "Camera " << nrCamera << " este libera.\n";
+        return false;
     }
 
 };
@@ -125,21 +195,20 @@ int Hotel::totalHoteluri = 0;
 
 int main() {
 
-    Hotel h1("Caro", "Bucuresti", 200, 150);
-    Hotel h2("Continental", "Cluj", 120, 90);
+    Hotel h("Hilton", "Bucuresti", 10, 0);
 
-    cout << "Info hotel:" << endl;
-    h1.afiseazaInfo();
-    h2.afiseazaInfo();
+    h.rezervaCamera("Ion Popescu", 34, 3, 5);   
+    h.rezervaCamera("Maria Ionescu", 28, 5, 2); 
+    h.rezervaCamera("Alex Georgescu", 41, 3, 1);
 
-    cout << "\nTotal hoteluri create: " << Hotel::getTotalHoteluri() << endl;
+    h.afiseazaInfo();     
+    h.afiseazaClienti();  
+    h.afiseazaClientLaCamera(5);
+    h.anuleazaRezervareCamera(5);    
+    h.afiseazaInfo();            
 
-    cout << "Operatii: " << endl;
-    h1.ocupaCamere(20);   
-    h1.elibereazaCamere(10);
-    h1.afiseazaInfo();
-
-    cout << "Total hoteluri in sistem: " << Hotel::getTotalHoteluri() << endl;
+    cout << "\nTotal hoteluri: " << Hotel::getTotalHoteluri() << "\n"; 
+    return 0;
 
     return 0;
 }
