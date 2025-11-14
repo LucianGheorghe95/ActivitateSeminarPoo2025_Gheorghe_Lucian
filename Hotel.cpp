@@ -187,6 +187,18 @@ public:
         return false;
     }
 
+    bool cautaClient(string numeCautat) const {
+        for (const auto& c : clienti) {
+            if (c.getNume() == numeCautat) {
+                cout << "\nClient gasit:\n";
+                c.afiseaza();
+                return true;
+            }
+        }
+        cout << "\nClientul " << numeCautat << " nu a fost gasit.\n";
+        return false;
+    }
+
 };
 
 
@@ -204,6 +216,9 @@ int main() {
     h.afiseazaInfo();     
     h.afiseazaClienti();  
     h.afiseazaClientLaCamera(5);
+    h.cautaClient("Ion Popescu");
+    h.cautaClient("Gigel");
+
     h.anuleazaRezervareCamera(5);    
     h.afiseazaInfo();            
 
