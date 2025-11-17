@@ -199,6 +199,14 @@ public:
         return false;
     }
 
+    int totalNoptiRezervate() const {
+        int total = 0;
+        for (const auto& c : clienti) {
+            total += c.getZileSejur();
+        }
+        return total;
+    }
+
 };
 
 
@@ -215,6 +223,7 @@ int main() {
 
     h.afiseazaInfo();     
     h.afiseazaClienti();  
+    cout << "\ntotal nopti rezervate: " << h.totalNoptiRezervate() << "\n";
     h.afiseazaClientLaCamera(5);
     h.cautaClient("Ion Popescu");
     h.cautaClient("Gigel");
