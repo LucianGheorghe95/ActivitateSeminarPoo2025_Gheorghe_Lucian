@@ -207,6 +207,23 @@ public:
         return total;
     }
 
+    void afiseazaClientCuCelMaiLungSejur() const {
+        if (clienti.empty()) {
+            cout << "Nu exista clienti cazati.\n";
+            return;
+        }
+
+        const Client* maxClient = &clienti[0]; 
+        for (const auto& c : clienti) {
+            if (c.getZileSejur() > maxClient->getZileSejur()) {
+                maxClient = &c;
+            }
+        }
+
+        cout << "\nClientul cu cele mai multe nopti rezervate:\n";
+        maxClient->afiseaza();
+    }
+
 };
 
 
@@ -224,6 +241,7 @@ int main() {
     h.afiseazaInfo();     
     h.afiseazaClienti();  
     cout << "\ntotal nopti rezervate: " << h.totalNoptiRezervate() << "\n";
+    h.afiseazaClientCuCelMaiLungSejur();
     h.afiseazaClientLaCamera(5);
     h.cautaClient("Ion Popescu");
     h.cautaClient("Gigel");
