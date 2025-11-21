@@ -224,6 +224,10 @@ public:
         maxClient->afiseaza();
     }
 
+    int numarClienti() const {
+        return clienti.size();
+    }
+
 };
 
 
@@ -247,7 +251,9 @@ int main() {
     h.cautaClient("Gigel");
 
     h.anuleazaRezervareCamera(5);    
-    h.afiseazaInfo();            
+    h.afiseazaInfo();        
+
+    cout << "\nNumar total clienti cazati: " << h.numarClienti() << "\n";
 
     cout << "\nTotal hoteluri: " << Hotel::getTotalHoteluri() << "\n"; 
     return 0;
