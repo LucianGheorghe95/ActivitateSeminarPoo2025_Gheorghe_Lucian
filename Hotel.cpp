@@ -228,6 +228,23 @@ public:
         return clienti.size();
     }
 
+    void afiseazaClientCuCelMaiScurtSejur() const {
+        if (clienti.empty()) {
+            cout << "Nu exista clienti cazati.\n";
+            return;
+        }
+
+        const Client* minClient = &clienti[0];
+        for (const auto& c : clienti) {
+            if (c.getZileSejur() < minClient->getZileSejur()) {
+                minClient = &c;
+            }
+        }
+
+        cout << "\nClientul cu cel mai scurt sejur este:\n";
+        minClient->afiseaza();
+    }
+
 };
 
 
@@ -256,6 +273,8 @@ int main() {
     cout << "\nNumar total clienti cazati: " << h.numarClienti() << "\n";
 
     cout << "\nTotal hoteluri: " << Hotel::getTotalHoteluri() << "\n"; 
+
+    h.afiseazaClientCuCelMaiScurtSejur();
     return 0;
 
     return 0;
