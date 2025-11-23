@@ -24,5 +24,8 @@
     <ClCompile Include="Hotel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Concert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
