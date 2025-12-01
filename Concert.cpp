@@ -38,6 +38,14 @@ public:
         cout << "Pret bilet: " << pretBilet << " lei" << endl;
         cout << "Venit total estimat: " << venitTotal() << " lei" << endl; 
     }
+
+    bool esteSoldOut() const {
+        if (numarSpectatori > 50000) {
+            return true;
+        }
+        return false;
+    }
+
 };
 
 int main() {
@@ -49,6 +57,10 @@ int main() {
     Concert c2("Untold", "Cluj", "04.08.2025", 75000, 350.5);
     cout << "\nConcert 2:" << endl;
     c2.afiseazaInfo();
+
+    cout << "\nconcert 1  este sold out?: " << (c1.esteSoldOut() ? "DA" : "NU") << endl;
+    cout << "concert 2  e sold out?: " << (c2.esteSoldOut() ? "DA" : "NU") << endl;
+
 
     return 0;
 }
