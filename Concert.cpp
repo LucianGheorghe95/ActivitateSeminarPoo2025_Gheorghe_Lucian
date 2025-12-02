@@ -46,6 +46,13 @@ public:
         return false;
     }
 
+    bool esteSuperConcert() const {
+        if (venitTotal() > 10000000) {
+            return true;
+        }
+        return false;
+    }
+
 };
 
 int main() {
@@ -60,6 +67,10 @@ int main() {
 
     cout << "\nconcert 1  este sold out?: " << (c1.esteSoldOut() ? "DA" : "NU") << endl;
     cout << "concert 2  e sold out?: " << (c2.esteSoldOut() ? "DA" : "NU") << endl;
+
+    cout << "\nconcert 1 e super concert?: " << (c1.esteSuperConcert() ? "da" : "nu") << endl; 
+    cout << "concert 2 e super concert?: " << (c2.esteSuperConcert() ? "da" : "NU") << endl; 
+
 
 
     return 0;
