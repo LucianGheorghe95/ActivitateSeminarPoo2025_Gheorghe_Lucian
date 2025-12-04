@@ -9,6 +9,7 @@ private:
     string data;
     int numarSpectatori;
     double pretBilet;   
+    int durataOre;
 public:
     Concert() {
         numeConcert = "nu stiu";
@@ -16,14 +17,16 @@ public:
         data = "data";
         numarSpectatori = 0;
         pretBilet = 0.0;
+        int durataOre = 0;
     }
 
-    Concert(string nume, string loc, string d, int nr, double pret) {
+    Concert(string nume, string loc, string d, int nr, double pret, int durata) {
         numeConcert = nume;
         locatie = loc;
         data = d;
         numarSpectatori = nr;
         pretBilet = pret;
+        durataOre = durata;
     }
 
     double venitTotal() const {
@@ -36,6 +39,7 @@ public:
         cout << "Data: " << data << endl;
         cout << "Numar spectatori: " << numarSpectatori << endl;
         cout << "Pret bilet: " << pretBilet << " lei" << endl;
+        cout << "Durata: " << durataOre << " ore" << endl;
         cout << "Venit total estimat: " << venitTotal() << " lei" << endl; 
     }
 
@@ -61,7 +65,7 @@ int main() {
     cout << "Concert implicit" << endl;
     c1.afiseazaInfo();
 
-    Concert c2("Untold", "Cluj", "04.08.2025", 75000, 350.5);
+    Concert c2("Untold", "Cluj", "04.08.2025", 75000, 350.5, 6);
     cout << "\nConcert 2:" << endl;
     c2.afiseazaInfo();
 
