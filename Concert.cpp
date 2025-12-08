@@ -33,6 +33,14 @@ public:
         return numarSpectatori * pretBilet;
     }
 
+    void reducePretBilet(double procent) {
+        if (procent < 0 || procent > 100) {
+            cout << "Procent invalid!" << endl;
+            return;
+        }
+        pretBilet = pretBilet - (pretBilet * procent / 100);
+    }
+
     void afiseazaInfo() const {
         cout << "Concert: " << numeConcert << endl;
         cout << "Locatie: " << locatie << endl;
@@ -74,6 +82,9 @@ int main() {
 
     cout << "\nconcert 1 e super concert?: " << (c1.esteSuperConcert() ? "da" : "nu") << endl; 
     cout << "concert 2 e super concert?: " << (c2.esteSuperConcert() ? "da" : "NU") << endl; 
+
+    c2.reducePretBilet(20);
+    c2.afiseazaInfo();
 
 
 
