@@ -41,6 +41,10 @@ public:
         pretBilet = pretBilet - (pretBilet * procent / 100);
     }
 
+    bool esteBiletScump() const {
+        return pretBilet > 300;
+    }
+
     void afiseazaInfo() const {
         cout << "Concert: " << numeConcert << endl;
         cout << "Locatie: " << locatie << endl;
@@ -77,6 +81,8 @@ int main() {
     cout << "\nConcert 2:" << endl;
     c2.afiseazaInfo();
 
+    cout << "\nconcert 2 bilet scump?: " << (c2.esteBiletScump() ? "DA" : "NU") << endl;
+
     cout << "\nconcert 1  este sold out?: " << (c1.esteSoldOut() ? "DA" : "NU") << endl;
     cout << "concert 2  e sold out?: " << (c2.esteSoldOut() ? "DA" : "NU") << endl;
 
@@ -85,6 +91,8 @@ int main() {
 
     c2.reducePretBilet(20);
     c2.afiseazaInfo();
+
+    cout << "\ndupa reducere, bilet scump?: " << (c2.esteBiletScump() ? "DA" : "NU") << endl;
 
 
 
